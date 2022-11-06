@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.0.0-preview3" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\native\rive.vcxproj" />
+    <ProjectReference Include="..\RiveSharp\RiveSharp.csproj" />
+  </ItemGroup>
+</Project>

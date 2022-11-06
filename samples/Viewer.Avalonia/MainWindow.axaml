@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800"
+        d:DesignHeight="450"
+        xmlns:rive="using:RiveSharp.Views"
+        x:Class="Viewer.Avalonia.MainWindow"
+        Title="Viewer.Avalonia">
+    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Label DockPanel.Dock="Top">Rive Avalonia</Label>
+        <Grid DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <rive:RivePlayer Source="avares://Viewer.Avalonia/Assets/runner.riv"
+                             Grid.Row="0"
+                             Grid.Column="0" />
+            <rive:RivePlayer Source="avares://Viewer.Avalonia/Assets/switch_event_example.riv"
+                             Grid.Row="0"
+                             Grid.Column="1" />
+            <rive:RivePlayer Source="avares://Viewer.Avalonia/Assets/ball.riv"
+                             StateMachine="Main State Machine"
+                             Grid.Row="1"
+                             Grid.Column="0" />
+            <rive:RivePlayer Source="avares://Viewer.Avalonia/Assets/tape.riv"
+                             Grid.Row="1"
+                             Grid.Column="1" />
+        </Grid>
+    </DockPanel>
+</Window>

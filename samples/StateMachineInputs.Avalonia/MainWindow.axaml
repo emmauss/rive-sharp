@@ -1,0 +1,47 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="StateMachineInputs.Avalonia.MainWindow"
+        xmlns:rive="using:RiveSharp.Views"
+        Title="StateMachineInputs.Avalonia">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="400" />
+        </Grid.ColumnDefinitions>
+        <rive:RivePlayer
+                         Source="https://public.rive.app/community/runtime-files/2244-4463-animated-login-screen.riv"
+                         Grid.Column="0">
+            <rive:BoolInput Target="isChecking"
+                            Value="{Binding IsChecked, ElementName=IsChecking}" />
+            <rive:NumberInput Target="numLook"
+                              Value="{Binding Value, ElementName=NumLook}" />
+            <rive:BoolInput Target="isHandsUp"
+                            Value="{Binding IsChecked, ElementName=IsHandsUp}" />
+            <rive:TriggerInput Target="trigFail"
+                               x:Name="TrigFail" />
+            <rive:TriggerInput Target="trigSuccess"
+                               x:Name="TrigSuccess" />
+        </rive:RivePlayer>
+        <StackPanel VerticalAlignment="Center"
+                    Margin="20"
+                    Spacing="10"
+                    Grid.Column="1">
+            <CheckBox Content="Looking"
+                      x:Name="IsChecking" />
+            <Slider Minimum="0"
+                    Maximum="100"
+                    Value="0"
+                    x:Name="NumLook"
+                    IsEnabled="{Binding IsChecked, ElementName=IsChecking}" />
+            <CheckBox Content="Hands Up"
+                      x:Name="IsHandsUp" />
+            <Button Content="Failure"
+                    Command="{Binding #TrigFail.Fire}" />
+            <Button Content="Success"
+                    Command="{Binding #TrigSuccess.Fire}" />
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,74 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
+    <TrimMode>copyused</TrimMode>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove=".gitignore" />
+    <None Remove="Assets\ball.riv" />
+    <None Remove="Assets\LockScreenLogo.scale-200.png" />
+    <None Remove="Assets\runner.riv" />
+    <None Remove="Assets\SplashScreen.scale-200.png" />
+    <None Remove="Assets\Square150x150Logo.scale-200.png" />
+    <None Remove="Assets\Square44x44Logo.scale-200.png" />
+    <None Remove="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <None Remove="Assets\StoreLogo.png" />
+    <None Remove="Assets\switch_event_example.riv" />
+    <None Remove="Assets\tape.riv" />
+    <None Remove="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\ball.riv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AvaloniaResource>
+    <ContentWithTargetPath Include="..\..\native\bin\x64\$(Configuration)\rive.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>rive.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\..\native\bin\x64\$(Configuration)\rive.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>rive.pdb</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\LockScreenLogo.scale-200.png" />
+    <AvaloniaResource Include="Assets\runner.riv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AvaloniaResource>
+    <AvaloniaResource Include="Assets\SplashScreen.scale-200.png" />
+    <AvaloniaResource Include="Assets\Square150x150Logo.scale-200.png" />
+    <AvaloniaResource Include="Assets\Square44x44Logo.scale-200.png" />
+    <AvaloniaResource Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <AvaloniaResource Include="Assets\StoreLogo.png" />
+    <AvaloniaResource Include="Assets\switch_event_example.riv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AvaloniaResource>
+    <AvaloniaResource Include="Assets\tape.riv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AvaloniaResource>
+    <AvaloniaResource Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <!--This helps with theme dll-s trimming.
+	If you will publish your application in self-contained mode with p:PublishTrimmed=true and it will use Fluent theme Default theme will be trimmed from the output and vice versa.
+	https://github.com/AvaloniaUI/Avalonia/issues/5593 -->
+    <TrimmableAssembly Include="Avalonia.Themes.Fluent" />
+    <TrimmableAssembly Include="Avalonia.Themes.Default" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.0.0-preview3" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview3" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview3" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview3" />
+    <PackageReference Include="XamlNameReferenceGenerator" Version="1.4.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\RiveSharp.Views.Avalonia\RiveSharp.Views.Avalonia.csproj" />
+    <ProjectReference Include="..\..\RiveSharp\RiveSharp.csproj" />
+  </ItemGroup>
+</Project>
